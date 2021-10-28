@@ -8,11 +8,10 @@ public class BackendGameBoard {
     int boardSize = 4; // width and height of board
 
     public BackendGameBoard() {
-        for (int i = 0; i < boardSize * 2; i++) {
+        for (int i = 0; i < boardSize * boardSize; i++) {
             pieces.add(new Piece(i, 0));
         }
         ShuffleBoard();
-        System.out.println(pieces);
     }
 
     public void ShuffleBoard() {
@@ -20,6 +19,7 @@ public class BackendGameBoard {
         for (int i = 0; i < pieces.size(); i++) {
             pieces.get(i).setPosition(i);
         }
+        System.out.println(pieces);
     }
 
     public void MovePiece(int positionFrom, int positionTo) {
@@ -28,9 +28,10 @@ public class BackendGameBoard {
                 piece.setPosition(positionTo);
             }
         }
+        pieces.get(positionTo).setPosition(positionFrom);
     }
 
-    public boolean LegalMove(int positionFrom) {
+    public int LegalMove(int positionFrom) {
         //find empty space
         int emptyPiecePosition = -1;
         for (Piece piece : pieces) {
@@ -40,14 +41,14 @@ public class BackendGameBoard {
         }
         //check legal move (+-boardWidth / +-1 position)
         if (positionFrom == emptyPiecePosition - 1 || positionFrom == emptyPiecePosition + 1 || positionFrom == emptyPiecePosition + boardSize || positionFrom == emptyPiecePosition - boardSize) {
-            return true;
+            return emptyPiecePosition;
         }
-        return false;
+        return -1;
     }
 
     public void SolveGame() {
         for (Piece piece : pieces) {
-            piece.setPosition(piece.getValue());
+            piece.setValue(piece.getPosition());
             //update game board
         }
     }

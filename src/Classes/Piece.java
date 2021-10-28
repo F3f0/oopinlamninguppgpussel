@@ -1,12 +1,16 @@
 package Classes;
 
 public class Piece {
-    private final int value;
+    private int value;
     private int position;
 
     public Piece(int value, int position) {
         this.value = value;
         this.position = position;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 
     public int getValue() {
@@ -21,10 +25,10 @@ public class Piece {
         this.position = position;
     }
 
-    public int changePosition(int positionGoing) {
-        int positionComing = this.position;
-        this.position = positionGoing;
-        return positionComing;
+    public int changeValue(int valueGoing) {
+        int valueComing = this.value;
+        this.value = valueGoing;
+        return valueComing;
     }
 
     @Override
