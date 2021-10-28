@@ -75,7 +75,37 @@ public class Gui extends JFrame implements ActionListener {
 
         if (event.getSource() == newGame)
             System.out.println("NewGame");
+        if (event.getSource() == arrayButton[0])
+            System.out.println("0");
         if (event.getSource() == arrayButton[1])
             System.out.println("1");
+        if (event.getSource() == arrayButton[2])
+            System.out.println("2");
+        if (event.getSource() == arrayButton[3])
+            System.out.println("3");
+        if (event.getSource() == arrayButton[4])
+            System.out.println("4");
+        if (event.getSource() == arrayButton[5])
+            System.out.println("5");
+        if (event.getSource() == arrayButton[6])
+            System.out.println("6");
+        if (event.getSource() == arrayButton[7])
+            System.out.println("7");
+        if (event.getSource() == arrayButton[8])
+            System.out.println("8");
+        if (event.getSource() == arrayButton[9])
+            System.out.println("9");
+        if (event.getSource() == arrayButton[10])
+            System.out.println("10");
+        if (event.getSource() == arrayButton[11])
+            System.out.println("11");
+        if (event.getSource() == arrayButton[12])
+            System.out.println("12");
+        if (event.getSource() == arrayButton[13])
+            System.out.println("13");
+        if (event.getSource() == arrayButton[14])
+            System.out.println("14");
+        if (event.getSource() == arrayButton[15])
+            System.out.println("15");
     }
 }
