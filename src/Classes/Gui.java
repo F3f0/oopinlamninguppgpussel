@@ -14,6 +14,7 @@ public class Gui extends JFrame implements ActionListener {
     JPanel controls = new JPanel();
     JPanel gameBoard = new JPanel();
     JButton newGame = new JButton("New Game");
+    JButton solution = new JButton("Solution");
     BufferedImage myPicture = ImageIO.read(new File("src/images.png"));
     JLabel pic = new JLabel(new ImageIcon(myPicture));
     int buttons = 4;
@@ -37,15 +38,21 @@ public class Gui extends JFrame implements ActionListener {
             button.setBorderPainted(true);
             button.addActionListener(this);
         }
-        controls.add(newGame);
-        controls.setBackground(Color.WHITE);
+
         controls.add(pic);
+        controls.add(newGame);
+        controls.add(solution);
+        controls.setBackground(Color.WHITE);
         newGame.addActionListener(this);
         newGame.setFont(Gui.scaryFont());
         newGame.setBackground(Color.orange);
         newGame.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        solution.addActionListener(this);
+        solution.setFont(Gui.scaryFont());
+        solution.setBackground(Color.orange);
+        solution.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         setLocation(400, 100);
-        setSize(400, 500);
+        setSize(400, 600);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         updateBoard();
