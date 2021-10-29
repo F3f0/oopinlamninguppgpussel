@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Gui extends JFrame implements ActionListener {
-    BackendGameBoard backend = new BackendGameBoard();
+    BackendGameBoard backend = new BackendGameBoard();  //Gui main elements
     JPanel controls = new JPanel();
     JPanel gameBoard = new JPanel();
     JButton newGame = new JButton("New Game");
@@ -20,14 +20,14 @@ public class Gui extends JFrame implements ActionListener {
     int buttons = 4;
     public JButton[] arrayButton = new JButton[buttons * buttons];
 
-    Gui() throws IOException, FontFormatException {
+    Gui() throws IOException, FontFormatException {   //Initialize Gui elements
         setLayout(new GridLayout(2, 1));
         add(gameBoard);
         add(controls);
         gameBoard.setLayout(new GridLayout(buttons, buttons));
 
 
-        for (int i = 0; i < buttons * buttons; i++) {
+        for (int i = 0; i < buttons * buttons; i++) {          //Create buttons + graphic
             JButton button = new JButton(Integer.toString(i));
             arrayButton[i] = button;
             gameBoard.add(button);
@@ -40,7 +40,7 @@ public class Gui extends JFrame implements ActionListener {
         }
 
 
-        controls.add(newGame);
+        controls.add(newGame);                   //Styling
         controls.add(solution);
         controls.add(pic);
         controls.setBackground(Color.WHITE);
@@ -59,7 +59,7 @@ public class Gui extends JFrame implements ActionListener {
         updateBoard();
     }
 
-    static public void winningPic() {
+    static public void winningPic() {         //Imagine-message for the winner
         JDialog dialog = new JDialog();
         JLabel label = new JLabel(new ImageIcon("src/Treisman-Scary-Stories.png"));
         dialog.add(label);
@@ -68,25 +68,23 @@ public class Gui extends JFrame implements ActionListener {
         dialog.setVisible(true);
     }
 
-    static Font scaryFont() throws IOException, FontFormatException {
+    static Font scaryFont() throws IOException, FontFormatException {      //Halloween font
         Font scaryFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/Halloween Morning.ttf")).deriveFont(24f);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(scaryFont);
         return scaryFont;
     }
 
-    public void moveMethod(int positionFrom){
+    public void moveMethod(int positionFrom){       //  Moving pieces + metod for winning the game
         backend.MovePiece(backend.LegalMove(positionFrom), positionFrom);
         updateBoard();
         if (backend.GameWon()){
             Gui.winningPic();
         }
-        //arrayButton[0].setText(Integer.toString(backend.pieces.get(backend.LegalMove(positionFrom)).getPosition()));
-        //arrayButton[backend.pieces.get(backend.LegalMove(positionFrom)).getPosition()].setText(Integer.toString(positionFrom));
         System.out.println(positionFrom);
     }
 
-    public void updateBoard(){
+    public void updateBoard(){           //Refresh the graphic + hide button zero
         for (int i = 0; i < backend.pieces.size(); i++) {
             arrayButton[backend.pieces.get(i).getPosition()].setVisible(true);
             if(backend.pieces.get(i).getValue() == 0)
@@ -99,17 +97,17 @@ public class Gui extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent event) {
         //System.out.println(event.paramString());
-        if (event.getSource() == solution){
+        if (event.getSource() == solution){             //Button solution logic
             backend.SolveGame();
             updateBoard();
             System.out.println("solve");
         }
-        if (event.getSource() == newGame){
+        if (event.getSource() == newGame){              //Button new game logic
             backend.ShuffleBoard();
             updateBoard();
             System.out.println("NewGame");
         }
-        for(int i = 0; i < arrayButton.length; i++)
+        for(int i = 0; i < arrayButton.length; i++)     //Action after button pushed
             if(event.getSource() == arrayButton[i])
                 if (backend.LegalMove(i) != -1) {
                     moveMethod(i);
