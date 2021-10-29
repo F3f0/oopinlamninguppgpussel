@@ -48,7 +48,7 @@ public class Gui extends JFrame implements ActionListener {
         setSize(400, 500);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        Gui.winningPic();
+        updateBoard();
     }
 
     static public void winningPic() {
@@ -68,8 +68,11 @@ public class Gui extends JFrame implements ActionListener {
     }
 
     public void moveMethod(int positionFrom){
-        backend.MovePiece(positionFrom, backend.pieces.get(backend.LegalMove(positionFrom)).getPosition());
+        backend.MovePiece(positionFrom, backend.LegalMove(positionFrom));
         updateBoard();
+        if (backend.GameWon()){
+            Gui.winningPic();
+        }
         //arrayButton[0].setText(Integer.toString(backend.pieces.get(backend.LegalMove(positionFrom)).getPosition()));
         //arrayButton[backend.pieces.get(backend.LegalMove(positionFrom)).getPosition()].setText(Integer.toString(positionFrom));
         System.out.println(positionFrom);
