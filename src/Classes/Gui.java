@@ -51,7 +51,7 @@ public class Gui extends JFrame implements ActionListener {
         solution.setFont(Gui.scaryFont());
         solution.setBackground(Color.orange);
         solution.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-        setLocation(400, 100);
+        setLocation(400, 50);
         setSize(400, 600);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -85,11 +85,20 @@ public class Gui extends JFrame implements ActionListener {
         System.out.println(positionFrom);
     }
 
-    public void updateBoard(){
+    /*public void updateBoard(){
         for (int i = 0; i < backend.pieces.size(); i++) {
             arrayButton[backend.pieces.get(i).getPosition()].setText(Integer.toString(backend.pieces.get(i).getValue()));
         }
+    }*/
+    public void updateBoard(){
+        for (int i = 0; i < backend.pieces.size(); i++) {
+            arrayButton[backend.pieces.get(i).getPosition()].setVisible(true);
+            if(backend.pieces.get(i).getValue() == 0)
+                arrayButton[backend.pieces.get(i).getPosition()].setVisible(false);
+            arrayButton[backend.pieces.get(i).getPosition()].setText(Integer.toString(backend.pieces.get(i).getValue()));
+        }
     }
+
 
     @Override
     public void actionPerformed(ActionEvent event) {
