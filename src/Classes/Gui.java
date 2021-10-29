@@ -10,21 +10,20 @@ import java.io.File;
 import java.io.IOException;
 
 public class Gui extends JFrame implements ActionListener {
-
+    BackendGameBoard backend = new BackendGameBoard();
     JPanel controls = new JPanel();
     JPanel gameBoard = new JPanel();
     JButton newGame = new JButton("New Game");
+    JButton solution = new JButton("Solution");
     BufferedImage myPicture = ImageIO.read(new File("src/images.png"));
     JLabel pic = new JLabel(new ImageIcon(myPicture));
     int buttons = 4;
-    JButton[] arrayButton = new JButton[buttons * buttons];
+    public JButton[] arrayButton = new JButton[buttons * buttons];
 
     Gui() throws IOException, FontFormatException {
-
         setLayout(new GridLayout(2, 1));
         add(gameBoard);
         add(controls);
-
         gameBoard.setLayout(new GridLayout(buttons, buttons));
 
 
@@ -39,18 +38,24 @@ public class Gui extends JFrame implements ActionListener {
             button.setBorderPainted(true);
             button.addActionListener(this);
         }
-        controls.add(newGame);
-        controls.setBackground(Color.WHITE);
+
         controls.add(pic);
+        controls.add(newGame);
+        controls.add(solution);
+        controls.setBackground(Color.WHITE);
         newGame.addActionListener(this);
         newGame.setFont(Gui.scaryFont());
         newGame.setBackground(Color.orange);
         newGame.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        solution.addActionListener(this);
+        solution.setFont(Gui.scaryFont());
+        solution.setBackground(Color.orange);
+        solution.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         setLocation(400, 100);
-        setSize(400, 500);
+        setSize(400, 600);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        Gui.winningPic();
+        updateBoard();
     }
 
     static public void winningPic() {
@@ -69,15 +74,40 @@ public class Gui extends JFrame implements ActionListener {
         return scaryFont;
     }
 
+    public void moveMethod(int positionFrom){
+        backend.MovePiece(backend.LegalMove(positionFrom), positionFrom);
+        updateBoard();
+        if (backend.GameWon()){
+            Gui.winningPic();
+        }
+        //arrayButton[0].setText(Integer.toString(backend.pieces.get(backend.LegalMove(positionFrom)).getPosition()));
+        //arrayButton[backend.pieces.get(backend.LegalMove(positionFrom)).getPosition()].setText(Integer.toString(positionFrom));
+        System.out.println(positionFrom);
+    }
+
+    public void updateBoard(){
+        for (int i = 0; i < backend.pieces.size(); i++) {
+            arrayButton[backend.pieces.get(i).getPosition()].setText(Integer.toString(backend.pieces.get(i).getValue()));
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent event) {
-        System.out.println(event.paramString());
-
-        if (event.getSource() == newGame)
+        //System.out.println(event.paramString());
+        if (event.getSource() == solution){
+            backend.SolveGame();
+            updateBoard();
+            System.out.println("solve");
+        }
+        if (event.getSource() == newGame){
+            backend.ShuffleBoard();
+            updateBoard();
             System.out.println("NewGame");
-        if (event.getSource() == arrayButton[0])
-            System.out.println("0");
-        if (event.getSource() == arrayButton[1])
-            System.out.println("1");
+        }
+        for(int i = 0; i < arrayButton.length; i++)
+            if(event.getSource() == arrayButton[i])
+                if (backend.LegalMove(i) != -1) {
+                    moveMethod(i);
+                }
     }
 }
