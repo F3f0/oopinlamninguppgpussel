@@ -23,12 +23,21 @@ public class BackendGameBoard {
     }
 
     public void MovePiece(int positionTo, int positionFrom) {
-        for (Piece piece : pieces) {
+        int tempPos = -1;
+        for (int i = 0; i < pieces.size(); i++) {
+            Piece piece = pieces.get(i);
             if (piece.getPosition() == positionTo) {
-                piece.setPosition(positionFrom);
+                //piece.setPosition(positionFrom);
+                tempPos = i;
             }
         }
-        pieces.get(positionFrom).setPosition(positionTo);
+        for (int i = 0; i < pieces.size(); i++) {
+            Piece piece = pieces.get(i);
+            if (piece.getPosition() == positionFrom) {
+                pieces.get(pieces.indexOf(piece)).setPosition(positionTo);
+            }
+        }
+        pieces.get(tempPos).setPosition(positionFrom);
     }
 
     public int LegalMove(int positionFrom) {

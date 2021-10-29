@@ -94,6 +94,11 @@ public class Gui extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent event) {
         //System.out.println(event.paramString());
+        if (event.getSource() == solution){
+            backend.SolveGame();
+            updateBoard();
+            System.out.println("solve");
+        }
         if (event.getSource() == newGame){
             backend.ShuffleBoard();
             updateBoard();
