@@ -68,7 +68,7 @@ public class Gui extends JFrame implements ActionListener {
     }
 
     public void moveMethod(int positionFrom){
-        backend.MovePiece(positionFrom, backend.LegalMove(positionFrom));
+        backend.MovePiece(backend.LegalMove(positionFrom), positionFrom);
         updateBoard();
         if (backend.GameWon()){
             Gui.winningPic();
