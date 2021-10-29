@@ -99,101 +99,10 @@ public class Gui extends JFrame implements ActionListener {
             updateBoard();
             System.out.println("NewGame");
         }
-        if (event.getSource() == arrayButton[0]){
-            if (backend.LegalMove(0) != -1) {
-                moveMethod(0);
-            }
-            System.out.println(backend.pieces.toString());
-        }
-        if (event.getSource() == arrayButton[1]){
-            if (backend.LegalMove(1) != -1) {
-                moveMethod(1);
-            }
-            System.out.println(backend.pieces.toString());
-        }
-        if (event.getSource() == arrayButton[2]){
-            if (backend.LegalMove(2) != -1) {
-                moveMethod(2);
-            }
-            System.out.println(backend.pieces.toString());
-        }
-        if (event.getSource() == arrayButton[3]){
-            if (backend.LegalMove(3) != -1) {
-                moveMethod(3);
-            }
-            System.out.println(backend.pieces.toString());
-        }
-        if (event.getSource() == arrayButton[4]){
-            if (backend.LegalMove(4) != -1) {
-                moveMethod(4);
-            }
-            System.out.println(backend.pieces.toString());
-        }
-        if (event.getSource() == arrayButton[5]){
-            if (backend.LegalMove(5) != -1) {
-                moveMethod(5);
-            }
-            System.out.println(backend.pieces.toString());
-        }
-        if (event.getSource() == arrayButton[6]){
-            if (backend.LegalMove(6) != -1) {
-                moveMethod(6);
-            }
-            System.out.println(backend.pieces.toString());
-        }
-        if (event.getSource() == arrayButton[7]){
-            if (backend.LegalMove(7) != -1) {
-                moveMethod(7);
-            }
-            System.out.println(backend.pieces.toString());
-        }
-        if (event.getSource() == arrayButton[8]){
-            if (backend.LegalMove(8) != -1) {
-                moveMethod(8);
-            }
-            System.out.println(backend.pieces.toString());
-        }
-        if (event.getSource() == arrayButton[9]){
-            if (backend.LegalMove(9) != -1) {
-                moveMethod(9);
-            }
-            System.out.println(backend.pieces.toString());
-        }
-        if (event.getSource() == arrayButton[10]){
-            if (backend.LegalMove(10) != -1) {
-                moveMethod(10);
-            }
-            System.out.println(backend.pieces.toString());
-        }
-        if (event.getSource() == arrayButton[11]){
-            if (backend.LegalMove(11) != -1) {
-                moveMethod(11);
-            }
-            System.out.println(backend.pieces.toString());
-        }
-        if (event.getSource() == arrayButton[12]){
-            if (backend.LegalMove(12) != -1) {
-                moveMethod(12);
-            }
-            System.out.println(backend.pieces.toString());
-        }
-        if (event.getSource() == arrayButton[13]){
-            if (backend.LegalMove(13) != -1) {
-                moveMethod(13);
-            }
-            System.out.println(backend.pieces.toString());
-        }
-        if (event.getSource() == arrayButton[14]){
-            if (backend.LegalMove(14) != -1) {
-                moveMethod(14);
-            }
-            System.out.println(backend.pieces.toString());
-        }
-        if (event.getSource() == arrayButton[15]){
-            if (backend.LegalMove(15) != -1) {
-                moveMethod(15);
-            }
-            System.out.println(backend.pieces.toString());
-        }
+        for(int i = 0; i < arrayButton.length; i++)
+            if(event.getSource() == arrayButton[i])
+                if (backend.LegalMove(i) != -1) {
+                    moveMethod(i);
+                }
     }
 }
