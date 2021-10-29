@@ -39,9 +39,10 @@ public class Gui extends JFrame implements ActionListener {
             button.addActionListener(this);
         }
 
-        controls.add(pic);
+
         controls.add(newGame);
         controls.add(solution);
+        controls.add(pic);
         controls.setBackground(Color.WHITE);
         newGame.addActionListener(this);
         newGame.setFont(Gui.scaryFont());
