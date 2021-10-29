@@ -85,11 +85,6 @@ public class Gui extends JFrame implements ActionListener {
         System.out.println(positionFrom);
     }
 
-    /*public void updateBoard(){
-        for (int i = 0; i < backend.pieces.size(); i++) {
-            arrayButton[backend.pieces.get(i).getPosition()].setText(Integer.toString(backend.pieces.get(i).getValue()));
-        }
-    }*/
     public void updateBoard(){
         for (int i = 0; i < backend.pieces.size(); i++) {
             arrayButton[backend.pieces.get(i).getPosition()].setVisible(true);
